@@ -1,0 +1,129 @@
+Credit_History <= 0 [ Mode: N ] => N 
+Credit_History > 0 [ Mode: Y ] 
+	Property_Area = Rural [ Mode: Y ] 
+		Gender =  [ Mode: N ] => N 
+		Gender = Female [ Mode: N ] 
+			Credit_History <= 0.842 [ Mode: Y ] => Y 
+			Credit_History > 0.842 [ Mode: N ] 
+				Self_Employed in [ "" "Yes" ] [ Mode: N ] => N 
+				Self_Employed in [ "No" ] [ Mode: N ] 
+					Married =  [ Mode: N ] => N 
+					Married = No [ Mode: N ] 
+						Education = Not Graduate [ Mode: N ] => N 
+						Education = Graduate [ Mode: Y ] 
+							CoapplicantIncome <= 830 [ Mode: Y ] 
+								LoanAmount <= 50 [ Mode: N ] => N 
+								LoanAmount > 50 [ Mode: Y ] => Y 
+							CoapplicantIncome > 830 [ Mode: N ] 
+								LoanAmount <= 143 [ Mode: Y ] => Y 
+								LoanAmount > 143 [ Mode: N ] => N 
+					Married = Yes [ Mode: N ] => N 
+		Gender = Male [ Mode: Y ] 
+			ApplicantIncome_BIN in [ 1 ] [ Mode: Y ] 
+				Dependents =  [ Mode: Y ] => Y 
+				Dependents = 0 [ Mode: Y ] 
+					Loan_Amount_Term <= 340 [ Mode: Y ] => Y 
+					Loan_Amount_Term > 340 [ Mode: Y ] 
+						LoanAmount <= 260 [ Mode: Y ] 
+							Married =  [ Mode: Y ] => Y 
+							Married = No [ Mode: Y ] => Y 
+							Married = Yes [ Mode: N ] 
+								LoanAmount <= 76 [ Mode: N ] => N 
+								LoanAmount > 76 [ Mode: Y ] 
+									LoanAmount <= 129 [ Mode: Y ] => Y 
+									LoanAmount > 129 [ Mode: N ] 
+										LoanAmount <= 136 [ Mode: N ] => N 
+										LoanAmount > 136 [ Mode: N ] 
+											LoanAmount <= 162 [ Mode: Y ] => Y 
+											LoanAmount > 162 [ Mode: N ] => N 
+						LoanAmount > 260 [ Mode: N ] => N 
+				Dependents = 1 [ Mode: N ] 
+					Credit_History <= 0.842 [ Mode: N ] => N 
+					Credit_History > 0.842 [ Mode: N ] 
+						Loan_Amount_Term <= 180 [ Mode: N ] => N 
+						Loan_Amount_Term > 180 [ Mode: Y ] 
+							Married =  [ Mode: Y ] => Y 
+							Married = No [ Mode: N ] => N 
+							Married = Yes [ Mode: Y ] 
+								CoapplicantIncome <= 1,376 [ Mode: Y ] => Y 
+								CoapplicantIncome > 1,376 [ Mode: Y ] 
+									CoapplicantIncome <= 1,863 [ Mode: N ] => N 
+									CoapplicantIncome > 1,863 [ Mode: Y ] => Y 
+				Dependents = 2 [ Mode: Y ] 
+					Education = Not Graduate [ Mode: N ] => N 
+					Education = Graduate [ Mode: Y ] => Y 
+				Dependents = 3+ [ Mode: Y ] 
+					Education = Not Graduate [ Mode: N ] => N 
+					Education = Graduate [ Mode: Y ] => Y 
+			ApplicantIncome_BIN in [ 2 3 4 5 ] [ Mode: N ] 
+				Self_Employed =  [ Mode: N ] => N 
+				Self_Employed = No [ Mode: N ] => N 
+				Self_Employed = Yes [ Mode: Y ] => Y 
+	Property_Area = Semiurban [ Mode: Y ] 
+		LoanAmount <= 149 [ Mode: Y ] 
+			LoanAmount <= 88 [ Mode: Y ] 
+				Dependents in [ "" "2" "3+" ] [ Mode: Y ] => Y 
+				Dependents in [ "0" ] [ Mode: Y ] 
+					CoapplicantIncome <= 189 [ Mode: Y ] => Y 
+					CoapplicantIncome > 189 [ Mode: N ] => N 
+				Dependents in [ "1" ] [ Mode: N ] => N 
+			LoanAmount > 88 [ Mode: Y ] => Y 
+		LoanAmount > 149 [ Mode: N ] 
+			Self_Employed =  [ Mode: N ] => N 
+			Self_Employed = No [ Mode: N ] 
+				Dependents in [ "" ] [ Mode: Y ] => Y 
+				Dependents in [ "0" ] [ Mode: Y ] 
+					CoapplicantIncome <= 2,254 [ Mode: N ] 
+						LoanAmount <= 267 [ Mode: N ] => N 
+						LoanAmount > 267 [ Mode: Y ] => Y 
+					CoapplicantIncome > 2,254 [ Mode: Y ] => Y 
+				Dependents in [ "1" "3+" ] [ Mode: N ] => N 
+				Dependents in [ "2" ] [ Mode: Y ] 
+					Education = Not Graduate [ Mode: N ] => N 
+					Education = Graduate [ Mode: Y ] => Y 
+			Self_Employed = Yes [ Mode: Y ] => Y 
+	Property_Area = Urban [ Mode: Y ] 
+		Dependents =  [ Mode: Y ] => Y 
+		Dependents = 0 [ Mode: Y ] 
+			ApplicantIncome_BIN in [ 1 ] [ Mode: Y ] 
+				Education = Not Graduate [ Mode: N ] 
+					LoanAmount <= 107 [ Mode: N ] 
+						LoanAmount <= 47 [ Mode: N ] => N 
+						LoanAmount > 47 [ Mode: Y ] => Y 
+					LoanAmount > 107 [ Mode: N ] => N 
+				Education = Graduate [ Mode: Y ] 
+					Gender =  [ Mode: N ] => N 
+					Gender = Female [ Mode: Y ] 
+						Married =  [ Mode: Y ] => Y 
+						Married = No [ Mode: Y ] 
+							LoanAmount <= 25 [ Mode: N ] => N 
+							LoanAmount > 25 [ Mode: Y ] => Y 
+						Married = Yes [ Mode: N ] => N 
+					Gender = Male [ Mode: Y ] 
+						Loan_Amount_Term <= 360 [ Mode: Y ] 
+							CoapplicantIncome <= 10,968 [ Mode: Y ] => Y 
+							CoapplicantIncome > 10,968 [ Mode: N ] => N 
+						Loan_Amount_Term > 360 [ Mode: N ] => N 
+			ApplicantIncome_BIN in [ 2 3 4 5 ] [ Mode: Y ] => Y 
+		Dependents = 1 [ Mode: Y ] 
+			ApplicantIncome_BIN in [ 1 ] [ Mode: Y ] 
+				Self_Employed =  [ Mode: N ] => N 
+				Self_Employed = No [ Mode: Y ] 
+					Loan_Amount_Term <= 180 [ Mode: N ] => N 
+					Loan_Amount_Term > 180 [ Mode: Y ] => Y 
+				Self_Employed = Yes [ Mode: Y ] => Y 
+			ApplicantIncome_BIN in [ 2 3 4 5 ] [ Mode: N ] => N 
+		Dependents = 2 [ Mode: Y ] 
+			CoapplicantIncome <= 10,968 [ Mode: Y ] 
+				LoanAmount <= 141 [ Mode: Y ] 
+					CoapplicantIncome <= 1,719 [ Mode: N ] 
+						CoapplicantIncome <= 1,560 [ Mode: Y ] 
+							CoapplicantIncome <= 189 [ Mode: N ] => N 
+							CoapplicantIncome > 189 [ Mode: Y ] => Y 
+						CoapplicantIncome > 1,560 [ Mode: N ] => N 
+					CoapplicantIncome > 1,719 [ Mode: Y ] => Y 
+				LoanAmount > 141 [ Mode: Y ] => Y 
+			CoapplicantIncome > 10,968 [ Mode: N ] => N 
+		Dependents = 3+ [ Mode: Y ] 
+			Loan_Amount_Term <= 240 [ Mode: N ] => N 
+			Loan_Amount_Term > 240 [ Mode: Y ] => Y 
